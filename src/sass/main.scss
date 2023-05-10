@@ -1,43 +1,1284 @@
-/* Wrapper */
+@import 'libs/vars';
+@import 'libs/functions';
+@import 'libs/mixins';
+@import 'libs/vendor';
+@import 'libs/breakpoints';
+@import 'libs/html-grid';
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,300italic,400italic');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono');
+@import url('/css/fontawesome.min.css');
 
-#wrapper {
-  opacity: 1 !important;
-}
+/*
+	Astral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
+
+// Breakpoints.
+
+	@include breakpoints((
+		xlarge:  ( 1281px,  1680px ),
+		large:   ( 981px,   1280px ),
+		medium:  ( 737px,   980px  ),
+		small:   ( 361px,   736px  ),
+		xsmall:  ( null,    360px  )
+	));
+
+// Reset.
+// Based on meyerweb.com/eric/tools/css/reset (v2.0 | 20110126 | License: public domain)
+
+	html, body, div, span, applet, object,
+	iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
+	pre, a, abbr, acronym, address, big, cite,
+	code, del, dfn, em, img, ins, kbd, q, s, samp,
+	small, strike, strong, sub, sup, tt, var, b,
+	u, i, center, dl, dt, dd, ol, ul, li, fieldset,
+	form, label, legend, table, caption, tbody,
+	tfoot, thead, tr, th, td, article, aside,
+	canvas, details, embed, figure, figcaption,
+	footer, header, hgroup, menu, nav, output, ruby,
+	section, summary, time, mark, audio, video {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline;
+	}
+
+	article, aside, details, figcaption, figure,
+	footer, header, hgroup, menu, nav, section {
+		display: block;
+	}
+
+	body {
+		line-height: 1;
+	}
+
+	ol, ul {
+		list-style: none;
+	}
+
+	blockquote,	q {
+		quotes: none;
+
+		&:before,
+		&:after {
+			content: '';
+			content: none;
+		}
+	}
+
+  pre {
+    font-size: 15px;
+    line-height: normal;
+    padding: 1em 1em;
+    border-top: 1px solid map-get($palette, "secondary");
+    border-bottom: 1px solid map-get($palette, "secondary");
+    background-color: map-get($palette, "coding");
+    overflow-x: auto;
+    margin: 1em 0em;
+
+    code {
+      font-family: "Roboto Mono", monospace;
+    }
+  }
+
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+
+	body {
+		-webkit-text-size-adjust: none;
+	}
+
+	mark {
+		background-color: transparent;
+		color: inherit;
+	}
+
+	input::-moz-focus-inner {
+		border: 0;
+		padding: 0;
+	}
+
+	input, select, textarea {
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		-ms-appearance: none;
+		appearance: none;
+	}
+
+/* Row */
+
+	.row {
+		@include html-grid((1.25em, 1.25em));
+
+		@include breakpoint('<=xlarge') {
+			@include html-grid((1.25em, 1.25em), 'xlarge');
+		}
+
+		@include breakpoint('<=large') {
+			@include html-grid((1.25em, 1.25em), 'large');
+		}
+
+		@include breakpoint('<=medium') {
+			@include html-grid((1.25em, 1.25em), 'medium');
+		}
+
+		@include breakpoint('<=small') {
+			@include html-grid((1.25em, 1.25em), 'small');
+		}
+	}
+
+/* Basic */
+
+	// Set box model to border-box.
+	// Based on css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
+		html {
+			box-sizing: border-box;
+		}
+
+		*, *:before, *:after {
+			box-sizing: inherit;
+		}
+
+	body {
+		background-image: url('/img/overlay.png'), url('/img/bg.jpg');
+		background-repeat: repeat, no-repeat;
+		background-size: auto, cover;
+		background-attachment: fixed;
+    background-position: 0% 0%, center top;
+    background-color: map-get($palette, "primary");
+		overflow-y: scroll;
+
+		// Stops initial animations until page loads.
+			&.is-preload {
+				*, *:before, *:after {
+					@include vendor('animation', 'none !important');
+					@include vendor('transition', 'none !important');
+				}
+			}
+
+	}
+
+	body, input, textarea, select {
+		font-family: 'Roboto', Arial, sans-serif;
+		font-weight: 300;
+		color: map-get($palette, "text");
+		font-size: 15pt;
+		line-height: 1.75em;
+
+		@include breakpoint('<=xlarge') {
+			font-size: 12pt;
+		}
+
+		@include breakpoint('<=large') {
+			font-size: 12pt;
+		}
+
+		@include breakpoint('<=small') {
+			font-size: 12pt;
+		}
+
+		@include breakpoint('<=xsmall') {
+			font-size: 10pt;
+		}
+	}
+
+	strong, b {
+		font-weight: 400;
+		color: map-get($palette, "text");
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-weight: 400;
+		color: map-get($palette, "primary");
+	}
+
+	h1 {
+		font-size: 2.4em;
+		letter-spacing: -0.015em;
+	}
+
+	h2 {
+		font-size: 1.8em;
+		letter-spacing: -0.015em;
+	}
+
+	h3, h4, h5, h6 {
+		font-size: 1.25em;
+		letter-spacing: -0.015em;
+	}
+
+	@include breakpoint('<=small') {
+		h1 {
+			font-size: 1.75em;
+		}
+
+		h2 {
+			font-size: 1.375em;
+		}
+
+		h3, h4, h5, h6 {
+			font-size: 1em;
+		}
+	}
+
+	blockquote {
+		border-left: solid 0.5em #ddd;
+		padding: 1em 0 1em 2em;
+		font-style: italic;
+	}
+
+	em, i {
+		font-style: italic;
+	}
+
+	hr {
+		border: 0;
+		border-top: solid 1px #ddd;
+		padding: 1.5em 0 0 0;
+		margin: 1.75em 0 0 0;
+	}
+
+	sub {
+		position: relative;
+		top: 0.5em;
+		font-size: 0.8em;
+	}
+
+	sup {
+		position: relative;
+		top: -0.5em;
+		font-size: 0.8em;
+	}
+
+	br.clear {
+		clear: both;
+	}
+
+	p, ul, ol, dl, table, blockquote, form, pre {
+		margin-bottom: 1em;
+	}
+
+/* Table */
+
+	table {
+		width: 100%;
+
+		&.default {
+			tbody {
+				tr {
+					border-bottom: solid 1px rgba(map-get($palette, "gray"), 0.15);
+				}
+			}
+
+			td {
+				padding: 0.5em 1em 0.5em 1em;
+			}
+
+			th {
+        color: map-get($palette, "primary");
+				text-align: left;
+				font-weight: 400;
+				padding: 0.5em 1em 0.5em 1em;
+			}
+
+			thead {
+				border-bottom: solid 1px map-get($palette, "secondary");
+			}
+		}
+	}
+
+/* Form */
+
+	form {
+		label {
+			display: block;
+			font-weight: 400;
+			color: #363636;
+			margin: 0 0 1em 0;
+		}
+
+		input[type="text"],
+		input[type="email"],
+		input[type="password"],
+		select,
+		textarea {
+			-webkit-appearance: none;
+			border: 0;
+			background: #f4f4f4;
+			padding: 0.75em;
+			width: 100%;
+			@include vendor('transition', 'background-color .25s ease-in-out');
+
+			&:focus {
+				background: #f8f8f8;
+			}
+		}
+
+		input[type="text"],
+		input[type="email"],
+		input[type="password"],
+		select {
+			line-height: 1.35em;
+		}
+
+		::-webkit-input-placeholder {
+			color: #999;
+		}
+
+		:-moz-placeholder {
+			color: #999;
+		}
+
+		::-moz-placeholder {
+			color: #999;
+		}
+
+		:-ms-input-placeholder {
+			color: #999;
+		}
+	}
+
+/* Section/Article */
+
+	section, article {
+		margin-bottom: 3em;
+    
+		> :last-child,
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+  article {
+    p {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+  }
+
+	header {
+		margin: 0 0 1.5em 0;
+
+		> p {
+			margin: 0.5em 0 0 0;
+			color: map-get($palette, "gray");
+		}
+
+    > div {
+      color: map-get($palette, "gray");
+    }
+
+		@include breakpoint('<=small') {
+			margin: 0 0 1em 0;
+		}
+	}
+
+/* Image */
+
+	.image {
+		display: inline-block;
+
+		img {
+			display: block;
+			width: 100%;
+		}
+
+		&.fit {
+			display: block;
+			width: 100%;
+
+      .round {
+        border-radius: 8px;
+      }
+		}
+
+		&.featured {
+			display: block;
+			width: 100%;
+			margin: 0 0 2em 0;
+		}
+
+		&.left {
+			float: left;
+			margin: 0 2em 2em 0;
+		}
+
+		&.centered {
+			display: block;
+			margin: 0 0 2em 0;
+
+			img {
+				margin: 0 auto;
+				width: auto;
+			}
+		}
+	}
+
+/* Button */
+
+	input[type="button"],
+	input[type="submit"],
+	input[type="reset"],
+	button,
+	.button {
+		@include vendor('transition', 'background-color .25s ease-in-out');
+		-webkit-appearance: none;
+		display: inline-block;
+		background-color: map-get($palette, "primary");
+		color: #ffffff;
+		border: 0;
+		cursor: pointer;
+		outline: 0;
+		padding: 0.7em 1.5em 0.7em 1.5em;
+
+		&:hover {
+			background-color: #333333;
+		}
+
+		&:active {
+			background-color: #444444;
+		}
+
+		&.alt {
+			background-color: #777777;
+
+			&:hover {
+				background-color: #888888;
+			}
+
+			&:active {
+				background-color: #999999;
+			}
+		}
+
+		&.small {
+			font-size: 0.75em;
+		}
+
+		&.large {
+			font-size: 1.25em;
+			padding: 0.5em 1.25em 0.5em 1.25em;
+		}
+
+		&.xlarge {
+			font-size: 1.5em;
+			padding: 0.5em 1.25em 0.5em 1.25em;
+		}
+
+		@include breakpoint('<=small') {
+			width: 100%;
+		}
+	}
+
+/* List */
+
+	ul {
+		list-style: none;
+		padding-left: 0em;
+    margin-left: 0em;
+
+		li {
+			padding-left: 0.75em;
+
+      li::before {
+        color: map-get($palette, "accent");
+      }
+
+      li {
+        li::before {
+          color: map-get($palette, "accent-1");
+        }
+
+        li {
+          li::before {
+            color: map-get($palette, "accent-2");
+          }
+        }
+      }
+		}
+
+    li::before {
+      content: "\25AA";
+      font-family: "Roboto", Arial, sans-serif;
+      display: inline-block;
+      width: 0.75em;
+      margin-left: -0.75em;
+      color: map-get($palette, "secondary");
+    }
+
+    :last-of-type {
+      margin-bottom: 0;
+    }
+	}
+
+	ol {
+    counter-reset: item;
+    list-style: none;
+		padding-left: 0em;
+    margin-left: 0em;
+
+		li {
+			padding-left: 0em;
+		}
+
+    li:before {
+      content: counters(item, ".") " ";
+      counter-increment: item;
+      display: inline-block;
+      width: 4em;
+      margin-left: 0em;
+      color: map-get($palette, "primary");
+    }
+	}
+
+/* Actions */
+
+	ul.actions {
+		list-style: none;
+		padding-left: 0;
+
+		li {
+			display: inline-block;
+			padding-left: 0;
+			margin: 0 0 0 0.5em;
+
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+
+		@include breakpoint('<=small') {
+			li {
+				display: block;
+				margin: 0.75em 0 0 0;
+
+				&:first-child {
+					margin-top: 0;
+				}
+			}
+		}
+	}
+
+/* Icons */
+
+	.icon {
+		@include icon;
+		position: relative;
+		text-decoration: none;
+
+		&.solid {
+			&:before {
+				font-weight: 900;
+			}
+		}
+
+		&.brands {
+			&:before {
+				font-family: 'Font Awesome 5 Brands';
+			}
+		}
+
+		&:before {
+			line-height: inherit;
+		}
+
+		> .label {
+			display: none;
+		}
+	}
 
 /* Nav */
 
-#nav {
-  a {
-    opacity: 1.0;
+	#nav {
+		text-align: center;
+		height: 180px;
+		cursor: default;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    &:before,
-    &:after {
-      display: none;
-    }
+		a {
+			position: relative;
+			display: flex;
+			color: map-get($palette, "background");
+			width: 40px;
+			height: 80px;
+			line-height: 0.9em;
+			font-size: 2.5em;
+			margin: 0 0.25em 0 0.25em;
+			opacity: 0.75;
+			outline: 0;
+			@include vendor('transition', 'opacity .25s ease-in-out');
 
-    span {
-      top: 0;
-      opacity: 1.0;
-
-      &:after {
-        display: none;
+      &.logo {
+        width: 80px;
+        height: 80px;
       }
-    }
-  }
-}
+
+      .svg-icon {
+        .fill-color {
+          fill: white;
+        }
+      }
+
+			&.icon:before {
+				padding-right: 0;
+			}
+
+			&:before {
+				font-size: 0.8em;
+			}
+
+			&:after {
+				content: '';
+				display: block;
+				position: absolute;
+				left: 50%;
+				bottom: -55px;
+				margin-left: -0.5em;
+        z-index: 100;
+				border-bottom: solid 0em map-get($palette, "background");
+				border-left: solid 0.5em transparent;
+				border-right: solid 0.5em transparent;
+				@include vendor('transition', 'border-bottom-width .25s ease-in-out');
+			}
+
+			span {
+				display: block;
+				position: absolute;
+				background: map-get($palette, "gray");
+				color: map-get($palette, "background");
+				top: -2.75em;
+				font-size: 0.3em;
+        font-weight: bold;
+				height: 2.25em;
+				line-height: 2.25em;
+				left: 50%;
+				opacity: 0;
+				@include vendor('transition', 'opacity .25s ease-in-out');
+				// Labels not wide enough? Increase its width below and set margin-left to ((width / 2) * -1)
+				width: 6em;
+				margin-left: -3em;
+
+				&:after {
+					content: '';
+					display: block;
+					position: absolute;
+					bottom: -0.4em;
+					left: 50%;
+					margin-left: -0.6em;
+					border-top: solid 0.6em map-get($palette, "gray");
+					border-left: solid 0.6em transparent;
+					border-right: solid 0.6em transparent;
+				}
+			}
+
+			&:hover {
+				opacity: 1.0;
+
+				span {
+					opacity: 1.0;
+				}
+			}
+
+			&.active {
+				opacity: 1.0;
+
+				&:after {
+					border-bottom-width: 0.5em;
+				}
+			}
+		}
+
+		@include breakpoint('<=medium') {
+			a {
+				span {
+					display: none;
+				}
+			}
+		}
+	}
+
+/* Wrapper */
+
+	#wrapper {
+		width: 45em;
+		margin: 0 auto;
+		min-height: 100vh;
+		max-width: 100%;
+		padding: 0;
+		@include vendor('display', 'flex');
+		@include vendor('flex-direction', 'column');
+		@include vendor('align-items', 'center');
+		@include vendor('justify-content', 'flex-start');
+		@include vendor('transition', 'opacity 1s ease-in-out');
+
+		body.is-preload & {
+			opacity: 0;
+		}
+
+		@include breakpoint('<=large') {
+			max-width: calc(100% - 6em);
+		}
+
+		@include breakpoint('<=medium') {
+			max-width: calc(100% - 8em);
+		}
+
+		@include breakpoint('<=small') {
+			max-width: calc(100% - 2em);
+		}
+
+		@include breakpoint('<=xsmall') {
+			max-width: 100%;
+		}
+	}
 
 /* Main */
 
-#main {
-  background: none;
-  box-shadow: none;
+	#main {
+		position: relative;
+		overflow: hidden;
+		width: 100%;
+		background: #ffffff;
+		box-shadow: 0px 6px 6px 4px rgba(0, 0, 0, 0.25);
+		@include vendor('transition', (
+			'min-height 0.5s ease-in-out',
+			'max-height 0.5s ease-in-out'
+		));
 
-  > .panel {
-    background: #ffffff;
-    margin-bottom: 2em;
+    .closeBtn {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      top: 10px;
+      right: 10px;
+      padding: 0px;
+      z-index: 10;
+      position: absolute;
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
 
-    &:last-child {
-      margin-bottom: 0;
+      &:hover {
+        svg {
+          .fill-color {
+            fill: map-get($palette, "primary");
+          }
+        }
+      }
+
+      a {
+        width: 100%;
+        height: 100%;
+        margin: 25%;
+
+        svg {
+          width: 100%;
+          height: 100%;
+          
+          .fill-color {
+            @include vendor('transition', 'fill 0.25s ease-in-out');
+            fill: map-get($palette, "gray");
+          }
+        }
+      }
+    }
+
+		> .panel {
+			@include vendor('transition', 'opacity 0.25s ease-in-out');
+			margin-bottom: 0;
+			position: relative;
+			padding: 3.5em 2.5em 2.5em 2.5em;
+			width: 100%;
+
+			&.inactive {
+				opacity: 0;
+			}
+
+      .tax {
+        font-size: 0.75em;
+      };
+
+			@include breakpoint('<=small') {
+				padding: 2em 1.5em 1.5em 1.5em;
+			}
+
+			&.intro {
+				padding: 0;
+				height: 20em;
+				@include vendor('display', 'flex');
+				@include vendor('flex-direction', 'row');
+				@include vendor('align-items', 'center');
+
+				.pic {
+					text-decoration: none;
+					position: relative;
+					@include vendor('flex-grow', '0');
+					@include vendor('flex-shrink', '0');
+					width: 17em;
+					height: 100%;
+          border-left: 3px solid map-get($palette, "secondary");
+
+					&:before {
+						content: '';
+						position: absolute;
+						top: 0;
+						left: 0;
+						background: url('/img/overlay.png');
+						width: 100%;
+						height: 100%;
+						z-index: 1;
+					}
+
+					img {
+						position: relative;
+						display: block;
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 100%;
+						@include vendor('object-fit', 'cover');
+						@include vendor('object-position', 'center');
+					}
+
+					.arrow {
+						display: block;
+						position: absolute;
+						right: 0;
+						top: 50%;
+						margin-top: -1.375em;
+						width: 2.75em;
+						height: 2.75em;
+						background: map-get($palette, "primary");
+						background: rgba(map-get($palette, "primary"), 0.75);
+						color: map-get($palette, "background");
+						text-align: center;
+						line-height: 2.75em;
+						font-size: 1.5em;
+						z-index: 1;
+						@include vendor('transition', ('width .15s ease-in-out', 'padding-right .15s ease-in-out'));
+
+						&:before {
+							position: relative;
+							padding-right: 0;
+							top: 0.125em;
+						}
+
+						span {
+							display: block;
+							text-indent: -9999px;
+						}
+					}
+
+					&:hover {
+						.arrow {
+							width: 3em;
+							padding-right: 0.25em;
+						}
+					}
+				}
+
+				header {
+					@include vendor('flex-grow', '1');
+					@include vendor('flex-shrink', '1');
+					padding: 3.5em 2.5em;
+					margin-bottom: 0;
+					width: 100%;
+          text-align: center;
+
+					h1 {
+						line-height: 1.25em;
+						margin-bottom: 0;
+					}
+
+          .logo {
+            height: 10em
+          }
+
+					p {
+						letter-spacing: -0.015em;
+						font-size: 1.25em;
+						margin: 0.25em 0 0 0;
+					}
+				}
+
+				@include breakpoint('<=medium') {
+					@include vendor('flex-direction', 'column');
+					height: auto;
+
+					.pic {
+						height: 15em;
+						width: 100%;
+            border-top: 3px solid map-get($palette, "secondary");
+            border-left: 0;
+					}
+
+					header {
+						padding: 4em;
+
+            .logo {
+              height: 5em
+            }
+					}
+				}
+
+				@include breakpoint('<=small') {
+					.pic {
+						height: 20em;
+					}
+
+					header {
+						padding: 2.75em 2em 2.5em 2em;
+
+						p {
+							font-size: 1em;
+							margin: 0.25em 0 0 0;
+						}
+					}
+				}
+			}
+		}
+
+    .cryptedmail:after {
+      content: attr(data-a) "@" attr(data-b) "." attr(data-c); 
+    }
+
+    .imgmail {
+      display: none;
+    }
+
+    .elements {
+      padding: 1em 0em;
+    }
+
+    .profiles {
+      .profile {
+        @include vendor('display', 'inline-flex');
+        @include vendor('flex-direction', 'row');
+        @include vendor('flex-wrap', 'wrap');
+        @include vendor('justify-content', 'flex-start');
+        @include vendor('align-items', 'center');
+        width: 100%;
+        padding: 1em;
+
+        &.right {
+          @include vendor('flex-direction', 'row-reverse');
+          @include vendor('justify-content', 'flex-start');
+        }
+
+        .image {
+          height: 200px;
+          width: 200px;
+          border-radius: 50%;
+          border: 4px solid map-get($palette, "primary");
+          position: relative;
+          overflow: hidden;
+          margin: 0em 1em;
+
+          img {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            @include vendor('object-fit', 'cover');
+            @include vendor('object-position', 'center');
+          }
+        }
+
+        ul {
+          margin-top: 5px;
+          font-weight: normal;
+          
+          li {
+            padding-left: 0;
+            margin-left: 0;
+            line-height: normal;
+          }
+          .name {
+            font-size: 1.2em;
+            color: map-get($palette, "primary");
+            font-weight: bold;
+            &::before {
+              content: ""
+            }
+          }
+          .position {
+            font-size: 80%;
+            color: map-get($palette, "text");
+            &::before {
+              content: ""
+            }
+          }
+          .skills {
+            font-size: 80%;
+            color: map-get($palette, "gray");
+            margin-left: 0.5em;
+            padding-left: 0.5em;
+            &::before {
+              color: map-get($palette, "secondary");
+            }
+          }
+        }
+      }
+
+      @include breakpoint('<=small') {
+        .profile {
+          padding: 0em;
+          gap: 10px;
+
+          &.right {
+            flex-direction: row;
+          }
+
+          .image {
+            width: 100%;
+            border-radius: 0%;
+            margin: 0em 0em;
+          }
+
+          ul {
+            width: 100%;
+            text-align: center;
+            
+            li {
+              &.skills {
+                padding-left: 0;
+                margin-left: 0;
+              }
+
+              &::before {
+                content: "";
+              }
+            }
+          }
+        }
+      }
+    }
+	}
+
+  .colors {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .color {
+      display: inline-flex;
+      align-content: center;
+      justify-content: center;
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      border: 3px solid white;
+      box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      margin-right: 1em;
+      margin-bottom: 2.5em;
+      padding: 30px 0;
+      font-size: 14px;
+      line-height: normal;
+      position: relative;
+      font-weight: bold;
+      div {
+        position: absolute;
+        color: black;
+        top: 85px;
+      }
+    }
+
+    .primary {
+      background-color: map-get($palette, "primary");
+      @include get-font-color(map-get($palette, "primary"));
+      &::after {
+        content: "#{map-get($palette, "primary")}";
+      }
+    }
+
+    .secondary {
+      background-color: map-get($palette, "secondary");
+      @include get-font-color(map-get($palette, "secondary"));
+      &::after {
+        content: "#{map-get($palette, "secondary")}";
+      }
+    }
+
+    .accent {
+      background-color: map-get($palette, "accent");
+      @include get-font-color(map-get($palette, "accent"));
+      &::after {
+        content: "#{map-get($palette, "accent")}";
+      }
+    }
+
+    .accent-1 {
+      background-color: map-get($palette, "accent-1");
+      @include get-font-color(map-get($palette, "accent-1"));
+      &::after {
+        content: "#{map-get($palette, "accent-1")}";
+      }
+    }
+
+    .accent-2 {
+      background-color: map-get($palette, "accent-2");
+      @include get-font-color(map-get($palette, "accent-2"));
+      &::after {
+        content: "#{map-get($palette, "accent-2")}";
+      }
+    }
+
+    .gray {
+      background-color: map-get($palette, "gray");
+      @include get-font-color(map-get($palette, "gray"));
+      &::after {
+        content: "#{map-get($palette, "gray")}";
+      }
+    }
+
+    .text {
+      background-color: map-get($palette, "text");
+      @include get-font-color(map-get($palette, "text"));
+      &::after {
+        content: "#{map-get($palette, "text")}";
+      }
+    }
+
+    .background {
+      background-color: map-get($palette, "background");
+      @include get-font-color(map-get($palette, "background"));
+      &::after {
+        content: "#{map-get($palette, "background")}";
+      }
+    }
+
+    .coding {
+      background-color: map-get($palette, "coding");
+      @include get-font-color(map-get($palette, "coding"));
+      &::after {
+        content: "#{map-get($palette, "coding")}";
+      }
+    }
+
+    .footer {
+      background-color: map-get($palette, "footer");
+      @include get-font-color(map-get($palette, "footer"));
+      &::after {
+        content: "#{map-get($palette, "footer")}";
+      }
     }
   }
-}
+
+  svg {
+    .primary {
+      fill: map-get($palette, "secondary")
+    }
+  }
+
+  #E404 {
+    text-align: center;
+    background-color: map-get($palette, "background");
+    background-image: url("/img/404.jpg");
+    height: 300px;
+    
+    header {
+      background-color: map-get($palette, "background");
+      display: inline-flex;
+      flex-direction: column;
+      gap: 15px;
+      align-content: center;
+      justify-content: center;
+      padding: 1em;
+      border-radius: 15px;
+      box-shadow: 0px 6px 6px 4px rgba(0, 0, 0, 0.25);
+
+      h1 {
+        line-height: 100%;
+        font-size: 400%;
+      }
+      div {
+        font-size: 100%;
+      }
+    }
+  }
+
+  #contact {
+    a {
+      color: map-get($palette, "primary");
+      color: rgba(map-get($palette, "primary"), 0.65);
+      @include vendor('transition', 'color .25s ease-in-out');
+
+      &:hover {
+        color: rgba(map-get($palette, "primary"), 1);
+      }
+    }
+  }
+
+  #credits {
+    a {
+      color: map-get($palette, "primary");
+      color: rgba(map-get($palette, "primary"), 0.65);
+			@include vendor('transition', 'color .25s ease-in-out');
+
+      &:hover {
+				color: rgba(map-get($palette, "primary"), 1);
+			}
+    }
+  }
+/* Footer */
+
+	#footer {
+		color: rgba(map-get($palette, "background"), 0.45);
+		text-align: center;
+		padding: 2em 0 0 0;
+		font-size: 0.75em;
+
+		a {
+			color: map-get($palette, "background");
+			color: rgba(map-get($palette, "background"), 0.65);
+			@include vendor('transition', 'color .25s ease-in-out');
+
+			&:hover {
+				color: rgba(map-get($palette, "background"), 1);
+			}
+		}
+
+		.copyright {
+			list-style: none;
+			padding-left: 0;
+
+			li {
+				display: inline-block;
+				padding-left: 1em;
+				margin-left: 1em;
+				border-left: solid 1px map-get($palette, "secondary");
+				line-height: 1;
+
+        &:before {
+          display: none;
+        }
+
+				&:first-child {
+					padding-left: 0;
+					margin-left: 0;
+					border-left: 0;
+				}
+			}
+		}
+
+		@include breakpoint('<=small') {
+			.copyright {
+				li {
+					padding-left: 0.5em;
+					margin-left: 0.5em;
+				}
+			}
+		}
+	}

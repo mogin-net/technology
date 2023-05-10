@@ -2,10 +2,10 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 6
+  version: 5
 
-"template@workspace:.":
+"mogin-web@workspace:.":
   version: 0.0.0-use.local
-  resolution: "template@workspace:."
+  resolution: "mogin-web@workspace:."
   languageName: unknown
   linkType: soft

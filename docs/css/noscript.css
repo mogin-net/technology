@@ -1,3 +1,8 @@
+/*
+	Astral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
 /* Wrapper */
 #wrapper {
   opacity: 1 !important;
@@ -6,13 +11,22 @@
 /* Nav */
 #nav a {
   opacity: 1;
+  margin: 0 0.15em 0 0.15em;
 }
 #nav a:before, #nav a:after {
   display: none;
 }
+#nav a:hover span {
+  display: block;
+}
+#nav a.logo span {
+  display: none;
+}
 #nav a span {
-  top: 0;
+  top: 80px;
   opacity: 1;
+  width: 80px;
+  display: none;
 }
 #nav a span:after {
   display: none;
@@ -24,7 +38,7 @@
   box-shadow: none;
 }
 #main > .panel {
-  background: #ffffff;
+  background: #FFFFFF;
   margin-bottom: 2em;
 }
 #main > .panel:last-child {

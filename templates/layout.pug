@@ -1,11 +1,21 @@
+include /navigation.pug
+- var company = "PT. Mogin Technology Terpadu"
+
 doctype html
 html(lang="en")
   head
     block title
-    - var headerTitle = title ? `Webpage Template Title :: ${title}` : "Webpage Template Title"
+    - var headerTitle = title ? `Mogin | ${title}` : company
     title #{headerTitle}
+    link(rel="icon" type="image/x-icon" href="/img/favicon.ico")/
     meta(charset="utf-8")/
     meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")/
+    meta(property="og:url" content="https://mogin.net")/
+    meta(property="og:title" content=`${headerTitle}`)/
+    meta(property="og:description" content="Enterprise Application Development, IT Consulting, Engineering")/
+    meta(property="og:image" content="https://mogin.net/img/mogin_300_300.jpg")/
+    meta(property="og:type" content="website")/
+    meta(property="og:locale" content="en_US")/
     link(rel="stylesheet" href="/css/main.css")/
     noscript: link(rel="stylesheet" href="/css/noscript.css")/
   body.is-preload
@@ -13,14 +23,24 @@ html(lang="en")
     #wrapper
       // Navigation 
       nav#nav
-        a(href="#").icon.solid.fa-home: span Home
+        each nav in navs 
+          a(href=`${title ? "/#" : "#"}${nav.href}` style=`order: ${nav.order};` class=`${nav.icon === "logo" ? "logo": ""}`).icon.solid
+            +navIcon(nav.icon)
+            span= `${nav.title}`
 
       // Main Content 
       #main
+        if title
+          .closeBtn
+            a(href="/")
+              +navIcon("times")
         block content
 
       // Footer 
       #footer
         ul.copyright 
           li#copyright &copy; 2021 - #{new Date().getFullYear()}
+          li= `${company}`
+          li 
+            a(href="/credits.html") Credits
     include ./scripts.pug

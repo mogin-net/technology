@@ -1,0 +1,20 @@
+-
+  var navs = {
+    home: { href: "home", icon: "logo", order: 3, title: "Home"},
+    projects: { href: "projects", icon: "project", order: 1, title: "Projects"},
+    tools: { href: "tools", icon: "pencil", order: 2, title: "Tools"},
+    about: { href: "about", icon: "card", order: 4, title: "About Us"},
+    contact: { href: "contact", icon: "envelope", order: 5, title: "Contact"}
+  }
+
+mixin navIcon(name)
+  case name 
+    when "card": include /icons/card.svg
+    when "cube": include /icons/cube.svg
+    when "envelope": include /icons/envelope.svg
+    when "layer": include /icons/layer.svg
+    when "logo": include /icons/logo.svg
+    when "pencil": include /icons/pencil.svg
+    when "project": include /icons/project.svg
+    when "times": include /icons/times.svg
+    default: include /icons/question.svg

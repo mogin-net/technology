@@ -1,5 +1,5 @@
 {
-  "name": "template",
+  "name": "mogin-web",
   "scripts": {
     "static": "cp -r ./src/img ./docs && cp -r ./src/js ./docs && cp -r ./src/webfonts ./docs",
     "sass": "sass ./src/sass:./docs/css --no-source-map",
@@ -9,5 +9,5 @@
     "clean": "rm -rf ./docs/!(CNAME)",
     "build": "yarn run clean && yarn run static && yarn run sass && yarn run pug -s"
   },
-  "packageManager": "yarn@3.5.1"
+  "packageManager": "yarn@3.1.1"
 }
