@@ -16,7 +16,8 @@
       "docs": "views"
     },
     "liveServer.settings.root": "/docs",
-    "liveServer.settings.CustomBrowser": "chrome"
+    "liveServer.settings.CustomBrowser": "chrome",
+    "liveServer.settings.port": 5501
   },
   "extensions": [
     "ducfilan.pug-formatter",

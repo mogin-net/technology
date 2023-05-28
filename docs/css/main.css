@@ -1098,11 +1098,9 @@ h3, h4, h5, h6 {
   h1 {
     font-size: 1.75em;
   }
-
   h2 {
     font-size: 1.375em;
   }
-
   h3, h4, h5, h6 {
     font-size: 1em;
   }
@@ -1353,10 +1351,10 @@ button.xlarge,
 }
 @media screen and (max-width: 736px) {
   input[type=button],
-input[type=submit],
-input[type=reset],
-button,
-.button {
+  input[type=submit],
+  input[type=reset],
+  button,
+  .button {
     width: 100%;
   }
 }
